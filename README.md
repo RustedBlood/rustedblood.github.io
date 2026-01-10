@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GO/Rust Разработчик | Система</title>
+    <title>GO/Rust Разработчик | Breakcore Система</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -204,7 +204,6 @@
             position: relative;
             display: inline-block;
             transform: skew(-10deg);
-            overflow-wrap: break-word;
         }
         
         .section-title::after {
@@ -232,7 +231,6 @@
             position: relative;
             transition: all 0.3s;
             transform: rotate(0.5deg);
-            overflow: hidden;
         }
         
         .skill-card:nth-child(2n) {
@@ -310,7 +308,6 @@
             background: rgba(30, 30, 50, 0.8);
             border: 1px solid var(--chaos-color-2);
             transform: rotate(0.7deg);
-            overflow-wrap: break-word;
         }
         
         .contact-item:nth-child(2n) {
@@ -397,12 +394,6 @@
             
             .deconstructed-title {
                 font-size: 1.8rem;
-            }
-            .section-title {
-                font-size: 1.1rem;
-            }
-            .section-title .section-title-text {
-                max-width: 80vw; /* Ограничиваем по ширине экрана */
             }
             
             .subtitle {
@@ -531,7 +522,7 @@
         <section id="about" class="content-section">
             <h2 class="section-title">Кто я?</h2>
             <p>Студент, обучающийся в сфере компьютерной безопасности, проектировании и создании бизнес приложений</p>
-            <p>Чистая архитектура, высокая производительность, легкая поддерживаемость - обязательства моих продуктов</p>
+            <p>Чистая архитектура, высокая производительность, легкая поддерживаемостья - обязательства моих продуктов</p>
             <p>Глубоко изучаю компьютерную науку</p>
             <p>Постоянно исследую новые технологии и методологии, чтобы оставаться на передовой разработке программного обеспечения.</p>
         </section>
