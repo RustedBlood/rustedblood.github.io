@@ -1,1 +1,601 @@
-# rustedblood.github.io
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GO/Rust Разработчик | Система</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --chaos-color-1: #ff0066;
+            --chaos-color-2: #00ff99;
+            --chaos-color-3: #6600ff;
+            --chaos-color-4: #ffff00;
+            --dark-bg: #000011;
+            --text-color: #ccccff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            font-family: 'Press Start 2P', cursive;
+            line-height: 1.5;
+            overflow-x: hidden;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23333' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"),
+                linear-gradient(45deg, rgba(255,0,102,0.05) 0%, rgba(0,255,153,0.05) 50%, rgba(102,0,255,0.05) 100%);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+        
+        /* Заголовок с фото */
+        .deconstructed-header {
+            position: relative;
+            margin-bottom: 60px;
+            padding: 20px;
+            border: 3px solid var(--chaos-color-1);
+            background: rgba(0, 0, 17, 0.8);
+            transform: rotate(-0.5deg);
+            box-shadow: 
+                10px 10px 0 var(--chaos-color-2),
+                -10px -10px 0 var(--chaos-color-3);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        
+        .photo-container {
+            flex-shrink: 0;
+            position: relative;
+            transform: rotate(2deg);
+        }
+        
+        .dev-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 5px;
+            border: 3px solid var(--chaos-color-1);
+            box-shadow: 
+                5px 5px 0 var(--chaos-color-2),
+                -5px -5px 0 var(--chaos-color-3),
+                0 0 20px var(--chaos-color-4);
+            object-fit: cover;
+            filter: contrast(1.2) saturate(1.1);
+            transition: all 0.3s;
+        }
+        
+        .dev-photo:hover {
+            transform: scale(1.05) rotate(-1deg);
+            border-color: var(--chaos-color-4);
+            box-shadow: 
+                8px 8px 0 var(--chaos-color-1),
+                -8px -8px 0 var(--chaos-color-2),
+                0 0 30px var(--chaos-color-3);
+        }
+        
+        .deconstructed-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--chaos-color-1);
+            text-shadow: 
+                3px 3px 0 var(--chaos-color-2);
+            line-height: 1.2;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: var(--chaos-color-4);
+            mix-blend-mode: overlay;
+            z-index: 1;
+            transform: translate(4px, 4px);
+        }
+        
+        .subtitle {
+            font-size: 1rem;
+            color: var(--chaos-color-2);
+            margin-bottom: 15px;
+            transform: skew(-10deg);
+            text-shadow: 2px 2px 0 var(--chaos-color-1);
+        }
+        
+        /* Навигация */
+        .chaos-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+            position: relative;
+            transform: rotate(0.7deg);
+        }
+        
+        .nav-item {
+            padding: 12px 20px;
+            background: rgba(0, 0, 17, 0.9);
+            border: 2px solid var(--chaos-color-2);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            position: relative;
+            z-index: 1;
+            transform: skew(-5deg);
+        }
+        
+        .nav-item:nth-child(2n) {
+            border-color: var(--chaos-color-3);
+            transform: skew(5deg);
+        }
+        
+        .nav-item:nth-child(3n) {
+            border-color: var(--chaos-color-1);
+            transform: skew(-8deg) rotate(2deg);
+        }
+        
+        .nav-item:hover {
+            background: var(--chaos-color-1);
+            color: var(--dark-bg);
+            transform: scale(1.1) rotate(-2deg);
+            z-index: 10;
+        }
+        
+        .nav-item.active {
+            background: var(--chaos-color-4);
+            color: var(--dark-bg);
+            border-color: var(--chaos-color-1);
+            transform: scale(1.05) rotate(-1deg);
+        }
+        
+        /* Секции контента */
+        .content-section {
+            display: none;
+            padding: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            background: rgba(0, 0, 17, 0.85);
+            border: 2px solid var(--chaos-color-3);
+            transform: rotate(0.3deg);
+            box-shadow: 
+                8px 8px 0 var(--chaos-color-1),
+                -5px -5px 0 var(--chaos-color-2);
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: chaotic-appear 0.5s ease;
+        }
+        
+        @keyframes chaotic-appear {
+            0% {
+                opacity: 0;
+                transform: translate(20px, -20px) rotate(5deg);
+            }
+            50% {
+                opacity: 0.7;
+                transform: translate(-10px, 10px) rotate(-2deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0, 0) rotate(0.3deg);
+            }
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--chaos-color-2);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            position: relative;
+            display: inline-block;
+            transform: skew(-10deg);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--chaos-color-1), var(--chaos-color-2), var(--chaos-color-3));
+        }
+        
+        /* Сетка навыков */
+        .skills-chaos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .skill-card {
+            padding: 20px;
+            background: rgba(20, 20, 40, 0.8);
+            border: 1px solid var(--chaos-color-1);
+            position: relative;
+            transition: all 0.3s;
+            transform: rotate(0.5deg);
+        }
+        
+        .skill-card:nth-child(2n) {
+            transform: rotate(-0.5deg);
+            border-color: var(--chaos-color-2);
+        }
+        
+        .skill-card:nth-child(3n) {
+            transform: rotate(1deg);
+            border-color: var(--chaos-color-3);
+        }
+        
+        .skill-card:hover {
+            transform: scale(1.05) rotate(-1deg);
+            z-index: 5;
+            box-shadow: 5px 5px 0 var(--chaos-color-4);
+        }
+        
+        .skill-title {
+            font-size: 1rem;
+            color: var(--chaos-color-4);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        /* Список проектов */
+        .project-list {
+            list-style: none;
+        }
+        
+        .project-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(30, 30, 50, 0.8);
+            border-left: 5px solid var(--chaos-color-1);
+            transform: skew(-2deg);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-item:nth-child(2n) {
+            border-left-color: var(--chaos-color-2);
+            transform: skew(2deg);
+        }
+        
+        .project-item:nth-child(3n) {
+            border-left-color: var(--chaos-color-3);
+            transform: skew(-1deg) rotate(0.5deg);
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            color: var(--chaos-color-3);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        /* Контактная информация */
+        .contact-chaos {
+            display: flex;
+            flex-direction: column;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            padding: 15px;
+            background: rgba(30, 30, 50, 0.8);
+            border: 1px solid var(--chaos-color-2);
+            transform: rotate(0.7deg);
+        }
+        
+        .contact-item:nth-child(2n) {
+            transform: rotate(-0.7deg);
+            border-color: var(--chaos-color-3);
+        }
+        
+        .contact-item a {
+            color: var(--chaos-color-4);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            font-size: 0.9rem;
+        }
+        
+        .contact-item a:hover {
+            color: var(--chaos-color-1);
+            transform: translateX(5px);
+        }
+        
+        /* Анимированные элементы breakcore */
+        .breakcore-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        .chaos-line {
+            position: absolute;
+            height: 2px;
+            background: var(--chaos-color-1);
+            animation: chaos-move 10s linear infinite;
+        }
+        
+        .chaos-line:nth-child(2) {
+            background: var(--chaos-color-2);
+            animation-duration: 8s;
+            animation-delay: 1s;
+        }
+        
+        .chaos-line:nth-child(3) {
+            background: var(--chaos-color-3);
+            animation-duration: 12s;
+            animation-delay: 2s;
+        }
+        
+        @keyframes chaos-move {
+            0% {
+                transform: translateX(-100%) rotate(0deg);
+            }
+            100% {
+                transform: translateX(100vw) rotate(360deg);
+            }
+        }
+        
+        .glitch-box {
+            position: absolute;
+            border: 2px solid var(--chaos-color-4);
+            animation: glitch-appear 5s infinite;
+        }
+        
+        @keyframes glitch-appear {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            10%, 90% {
+                opacity: 1;
+                transform: scale(1) rotate(45deg);
+            }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .deconstructed-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .deconstructed-title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 0.8rem;
+            }
+            
+            .dev-photo {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .skills-chaos, .contact-chaos {
+                grid-template-columns: 1fr;
+            }
+            
+            .chaos-nav {
+                flex-direction: column;
+            }
+        }
+        
+        /* Эффект мерцания и хаоса */
+        .chaos-blink {
+            animation: chaos-blink 0.1s infinite;
+        }
+        
+        @keyframes chaos-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Дополнительные хаотичные трансформации */
+        .random-rotate {
+            animation: random-rotate 5s infinite alternate;
+        }
+        
+        @keyframes random-rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(1deg); }
+            50% { transform: rotate(-1deg); }
+            75% { transform: rotate(0.5deg); }
+            100% { transform: rotate(-0.5deg); }
+        }
+        
+        /* Текст в секциях */
+        p, li, div {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="breakcore-elements">
+        <div class="chaos-line" style="top: 20%; width: 150%;"></div>
+        <div class="chaos-line" style="top: 40%; width: 120%;"></div>
+        <div class="chaos-line" style="top: 60%; width: 130%;"></div>
+        <div class="chaos-line" style="top: 80%; width: 110%;"></div>
+        
+        <div class="glitch-box" style="top: 10%; left: 10%; width: 100px; height: 100px;"></div>
+        <div class="glitch-box" style="top: 70%; left: 80%; width: 150px; height: 150px;"></div>
+        <div class="glitch-box" style="top: 30%; left: 60%; width: 80px; height: 80px;"></div>
+    </div>
+    
+    <div class="container">
+        <header class="deconstructed-header random-rotate">
+            <div class="title-container">
+                <h1 class="deconstructed-title">GO & Rust РАЗРАБОТЧИК</h1>
+                <div class="subtitle chaos-blink">>> CLI УТИЛИТЫ | ТЕЛЕГРАМ БОТЫ | ВЕБ СЕРВИСЫ | GUI ПРИЛОЖЕНИЯ</div>
+                <div class="subtitle">>> Высококая производительность | Чистая архитектура<span class="chaos-blink">_</span></div>
+            </div>
+        </header>
+        
+        <nav class="chaos-nav">
+            <div class="nav-item active" data-tab="skills">НАВЫКИ</div>
+            <div class="nav-item" data-tab="projects">ПРОЕКТЫ</div>
+            <div class="nav-item" data-tab="about">ОБО МНЕ</div>
+            <div class="nav-item" data-tab="contact">КОНТАКТЫ</div>
+        </nav>
+        
+        <section id="skills" class="content-section active">
+            <h2 class="section-title">ТЕХНОЛОГИЧЕСКИЙ РАЗБОР</h2>
+            <div class="skills-chaos">
+                <div class="skill-card">
+                    <div class="skill-title">Языки</div>
+                    <div>GO, Rust, Python,</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Бэкенд Системы</div>
+                    <div>REST API, PostgreSQL, SQLite, JWT</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">CLI</div>
+                    <div>Парсинг аргументов, Конфиги, Логирование, Отладка</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">GUI</div>
+                    <div>Кроссплатформенные решения с webkit, либо нативным GUI решением</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Telegram Боты</div>
+                    <div>Боты на GO, Интеграции API, Автоматизация процессов</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title">Инфраструктура</div>
+                    <div>Docker, git</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="content-section">
+            <h2 class="section-title">ПРОЕКТЫ</h2>
+            <ul class="project-list">
+                <li class="project-item">
+                    <div class="project-desc">Telegram бот на GO с оплатой при помощи @CryptoBot/@send</div>
+                </li>
+                <li class="project-item">
+                    <div class="project-desc">Вебсайт для подготовки к ЕГЭ с интеграцией базы данных и панелью администратора</div>
+                </li>
+                <li class="project-item">
+                    <div class="project-title">В разработке</div>
+                    <div class="project-desc">GUI приложение для анализа памяти в компьютере</div>
+                </li>
+            </ul>
+        </section>
+        
+        <section id="about" class="content-section">
+            <h2 class="section-title">Кто я?</h2>
+            <p>Студент, обучающийся в сфере компьютерной безопасности, проектировании и создании бизнес приложений</p>
+            <p>Чистая архитектура, высокая производительность, легкая поддерживаемостья - обязательства моих продуктов</p>
+            <p>Глубоко изучаю компьютерную науку</p>
+            <p>Постоянно исследую новые технологии и методологии, чтобы оставаться на передовой разработке программного обеспечения.</p>
+        </section>
+        
+        <section id="contact" class="content-section">
+            <h2 class="section-title">Контакты</h2>
+            <div class="contact-chaos">
+                <div class="contact-item">
+                    <a href="mailto:email@porifa2020@gmail.com">EMAIL: porifa2020@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://github.com/rustedblood">GITHUB: RustedBlood</a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://t.me/RustedBlood">TELEGRAM: @RustedBlood</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Переключение вкладок
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                
+                item.classList.add('active');
+                const tabId = item.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        // Добавляем случайные трансформации элементам
+        document.querySelectorAll('.skill-card, .project-item, .contact-item').forEach(item => {
+            const randomRotation = (Math.random() * 2) - 1; // от -1 до 1 градуса
+            item.style.transform = `rotate(${randomRotation}deg)`;
+        });
+        
+        // Эффект хаотичного мерцания
+        setInterval(() => {
+            const elements = document.querySelectorAll('.chaos-blink');
+            elements.forEach(el => {
+                el.style.opacity = Math.random() > 0.5 ? 1 : 0.7;
+            });
+        }, 100);
+        
+        // Случайное смещение элементов при наведении
+        document.querySelectorAll('.skill-card, .nav-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                const randomX = (Math.random() * 10) - 5;
+                const randomY = (Math.random() * 10) - 5;
+                item.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${(Math.random() * 4) - 2}deg)`;
+            });
+            
+            item.addEventListener('mouseleave', () => {
+                setTimeout(() => {
+                    const randomRotation = (Math.random() * 2) - 1;
+                    item.style.transform = `rotate(${randomRotation}deg)`;
+                }, 300);
+            });
+        });
+        
+        // Эффект глитча для фото
+        const photo = document.querySelector('.dev-photo');
+        setInterval(() => {
+            if (Math.random() > 0.7) {
+                photo.style.filter = `contrast(${100 + Math.random() * 50}%) saturate(${100 + Math.random() * 50}%)`;
+                setTimeout(() => {
+                    photo.style.filter = 'contrast(1.2) saturate(1.1)';
+                }, 100);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
